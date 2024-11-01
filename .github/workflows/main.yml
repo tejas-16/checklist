@@ -90,5 +90,5 @@ jobs:
               <tr><td>4</td><td>Update environment variables if needed</td><td>${{ github.event.inputs.env_variables }}</td></tr>
               <tr><td>5</td><td>Run workflow dispatch from GitHub Actions</td><td>${{ github.event.inputs.run_workflow }}</td></tr>
             </table>
-          to: "crownardio@gamil.com"  # Recipient email address
+          to: "crownardio@gmail.com"  # Recipient email address
           from: ${{ secrets.EMAIL_USERNAME }}  # Sender email address
