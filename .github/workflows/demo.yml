@@ -1,4 +1,4 @@
-name: Deployment Checklist
+name: TTWOS Checklist
 
 on:
   workflow_dispatch:
