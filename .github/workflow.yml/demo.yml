@@ -84,8 +84,8 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}  # GitHub secret for email user
           password: ${{ secrets.EMAIL_PASSWORD }}  # GitHub secret for email password
           subject: "Deployment Checklist Summary"
-          to: "recipient@example.com"  # Recipient email address
-          from: "sender@example.com"  # Sender email address
+          to: "crownardio@gamil.com"  # Recipient email address
+          from: ${{ secrets.EMAIL_USERNAME }}  # Sender email address
           content_type: text/html
           body: |
             <h2>Deployment Checklist Summary</h2>
