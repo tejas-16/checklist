@@ -59,18 +59,16 @@ jobs:
           ENV_VARIABLES="${{ github.event.inputs.env_variables }}"
           RUN_WORKFLOW="${{ github.event.inputs.run_workflow }}"
 
-          # Generate the email body with HTML table
-          EMAIL_BODY="<h2>Deployment Checklist Summary</h2>
-          <table border=\"1\">
-            <tr><th>Step</th><th>Description</th><th>Completed</th></tr>
-            <tr><td>1</td><td>Verify all code changes are merged</td><td>$VERIFY_CHANGES</td></tr>
-            <tr><td>2</td><td>Ensure main branch passes all CI tests</td><td>$PASS_CI_TESTS</td></tr>
-            <tr><td>3</td><td>Confirm version number is updated if required</td><td>$VERSION_UPDATED</td></tr>
-            <tr><td>4</td><td>Update environment variables if needed</td><td>$ENV_VARIABLES</td></tr>
-            <tr><td>5</td><td>Run workflow dispatch from GitHub Actions</td><td>$RUN_WORKFLOW</td></tr>
-          </table>"
+          
+          # Create the plain text email content
+          EMAIL_BODY="Deployment Checklist Summary\n\n"
+          EMAIL_BODY+="Step 1: Verify all code changes are merged - $VERIFY_CHANGES\n"
+          EMAIL_BODY+="Step 2: Ensure main branch passes all CI tests - $PASS_CI_TESTS\n"
+          EMAIL_BODY+="Step 3: Confirm version number is updated if required - $VERSION_UPDATED\n"
+          EMAIL_BODY+="Step 4: Update environment variables if needed - $ENV_VARIABLES\n"
+          EMAIL_BODY+="Step 5: Run workflow dispatch from GitHub Actions - $RUN_WORKFLOW\n"
 
-          echo "$EMAIL_BODY" > email_body.html
+          echo "email_body=$EMAIL_BODY" >> $GITHUB_ENV
 
       - name: Send deployment checklist email
         uses: dawidd6/action-send-mail@v3
