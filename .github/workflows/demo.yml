@@ -1,4 +1,4 @@
-name: TTWOS Checklist
+name: Deployment Checklist
 
 on:
   workflow_dispatch:
@@ -49,8 +49,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate Deployment Checklist Table
-        id: checklist
+      - name: Generate Email Body for Deployment Checklist
+        id: email_body
         run: |
           # Capture inputs as variables
           VERIFY_CHANGES="${{ github.event.inputs.verify_changes }}"
@@ -59,7 +59,7 @@ jobs:
           ENV_VARIABLES="${{ github.event.inputs.env_variables }}"
           RUN_WORKFLOW="${{ github.event.inputs.run_workflow }}"
 
-          # Generate the email body with HTML table
+          # Create the HTML email content
           EMAIL_BODY="<h2>Deployment Checklist Summary</h2>
           <table border=\"1\">
             <tr><th>Step</th><th>Description</th><th>Completed</th></tr>
@@ -70,7 +70,7 @@ jobs:
             <tr><td>5</td><td>Run workflow dispatch from GitHub Actions</td><td>$RUN_WORKFLOW</td></tr>
           </table>"
 
-          echo "$EMAIL_BODY" > email_body.html
+          echo "email_body=$EMAIL_BODY" >> $GITHUB_ENV
 
       - name: Send deployment checklist email
         uses: dawidd6/action-send-mail@v3
@@ -83,4 +83,4 @@ jobs:
           to: "crownardio@gmail.com"  # Recipient email address
           from: ${{ secrets.EMAIL_USERNAME }}  # Sender email address
           content_type: text/html
-          body_file: email_body.html
+          body: "${{ env.email_body }}"
