@@ -6,7 +6,6 @@ on:
       verify_change:
         description: "Verify all code changes are merged into the main branch"
         required: true
-        default: "No"
         type: choice
         options:
           - Yes
@@ -14,7 +13,6 @@ on:
       pass_ci_tests:
         description: "Ensure the main branch passes all CI tests"
         required: true
-        default: "No"
         type: choice
         options:
           - Yes
@@ -22,7 +20,6 @@ on:
       version_updated:
         description: "Confirm version number is updated if required"
         required: true
-        default: "No"
         type: choice
         options:
           - Yes
@@ -30,7 +27,6 @@ on:
       env_variables:
         description: "Update environment variables if needed"
         required: true
-        default: "No"
         type: choice
         options:
           - Yes
@@ -38,7 +34,6 @@ on:
       run_workflow:
         description: "Run workflow dispatch from GitHub Actions"
         required: true
-        default: "No"
         type: choice
         options:
           - Yes
