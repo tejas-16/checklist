@@ -74,7 +74,7 @@ jobs:
       - name: Send deployment checklist email
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.example.com  # Replace with your SMTP server
+          server_address: smtp.gmail.com  # Replace with your SMTP server
           server_port: 587  # Usually 587 for TLS
           username: ${{ secrets.EMAIL_USERNAME }}  # GitHub secret for email user
           password: ${{ secrets.EMAIL_PASSWORD }}  # GitHub secret for email password
